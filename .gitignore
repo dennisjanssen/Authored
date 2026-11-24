@@ -1,0 +1,11 @@
+# Personal sound recordings and the list that points to them.
+# Many sound libraries (e.g. Pixabay) don't allow redistributing the files,
+# so they stay on your own machine. See assets/sounds/README.md.
+assets/sounds/*/
+assets/sounds/sounds.local.json
+
+# OS / editor clutter
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

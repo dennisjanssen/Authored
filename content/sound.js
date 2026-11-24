@@ -231,6 +231,7 @@
   }
 
   // ── Your own recordings ────────────────────────────────────────────────
+  // assets/sounds/sounds.local.json (personal, git-ignored) or else
   // assets/sounds/sounds.json lists files per style and sound; anything listed
   // there replaces the synthesised version. Files may be raw downloads:
   // leading silence is trimmed. All clips of one style share one gain, so the
@@ -292,11 +293,12 @@
   }
 
   async function loadSamples() {
-    let list;
-    try {
-      list = await (await fetch(chrome.runtime.getURL('assets/sounds/sounds.json'))).json();
-    } catch (e) {
-      Authored.log.warn('could not read assets/sounds/sounds.json:', e?.message || e);
+    const config = await Authored.send({ type: 'authored:sound-config' });
+    const list = config?.list;
+    if (!list) {
+      Authored.log.warn('no sound list found (assets/sounds/sounds.json); using the built-in sounds.');
+      samples = {};
+      Authored.bus.emit('sound-source', {});
       return;
     }
     const out = {};

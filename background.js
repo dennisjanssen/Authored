@@ -5,6 +5,9 @@
 //    there. Instead the window itself is put into fullscreen with
 //    chrome.windows.update, which needs no gesture and no extra permission.
 // 3. Reports the current shortcut bindings so the settings drawer can show them.
+// 4. Finds the sound list: assets/sounds/sounds.local.json (personal, not in
+//    git) if it exists, otherwise assets/sounds/sounds.json. Looking for the
+//    optional file here keeps a "not found" out of the Docs page console.
 
 'use strict';
 
@@ -24,6 +27,10 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       .then(sendResponse)
       .catch((e) => sendResponse({ error: String(e?.message || e) }));
     return true; // async response
+  }
+  if (msg?.type === 'authored:sound-config') {
+    soundConfig().then(sendResponse);
+    return true;
   }
   if (msg?.type === 'authored:commands') {
     chrome.commands.getAll().then(sendResponse);
@@ -52,4 +59,16 @@ async function setFullscreen(windowId, want) {
     await chrome.storage.session.remove(key);
   }
   return { fullscreen: want };
+}
+
+async function soundConfig() {
+  for (const file of ['assets/sounds/sounds.local.json', 'assets/sounds/sounds.json']) {
+    try {
+      const res = await fetch(chrome.runtime.getURL(file));
+      if (res.ok) return { file, list: await res.json() };
+    } catch {
+      // not there (or not valid JSON): try the next one
+    }
+  }
+  return { file: null, list: null };
 }
