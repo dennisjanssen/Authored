@@ -1,0 +1,131 @@
+/*
+ * Authored themes. Injected only while focus mode is on.
+ *
+ * Docs draws the text on a canvas, so the page cannot be recoloured with
+ * normal CSS. Instead each theme sets a CSS filter for the page
+ * (--authored-page-filter) and plain colours for everything around it.
+ *
+ * Adding a theme = adding one block below and one entry in ui.js (THEMES).
+ *
+ * Pageless themes: the page disappears and only the text remains. Their
+ * --authored-bg is exactly the colour the filter turns Docs' white paper into,
+ * worked out with:  node tools/theme-colors.js "<filter>"
+ * Change the filter and that colour together, or the page edge reappears.
+ *
+ *   --authored-bg           area around the page
+ *   --authored-page-filter  filter applied to each page (canvas)
+ *   --authored-text         drawer text
+ *   --authored-muted        word count, icons
+ *   --authored-faint        hairlines, scrollbar
+ *   --authored-accent       red accent: progress line, drawer title, selected options
+ *   --authored-warm         progress line beyond 150 % of the goal
+ *   --authored-surface      settings drawer background
+ */
+
+html[data-authored-theme='dark'] {
+  --authored-bg: #161616;
+  /* White paper becomes #1a1a1a, black text becomes #e5e5e5; hues are kept. */
+  --authored-page-filter: invert(0.9) hue-rotate(180deg);
+  --authored-text: #d9d4cc;
+  --authored-muted: #8a857d;
+  --authored-faint: rgba(217, 212, 204, 0.14);
+  --authored-accent: #c4504a;
+  --authored-warm: #d6a24e;
+  --authored-surface: #1d1d1c;
+}
+
+html[data-authored-theme='sepia'] {
+  --authored-bg: #e6dcc8;
+  --authored-page-filter: sepia(0.32) brightness(0.97) contrast(0.95);
+  --authored-text: #4a3f33;
+  --authored-muted: #8c7d68;
+  --authored-faint: rgba(74, 63, 51, 0.14);
+  --authored-accent: #a8382f;
+  --authored-warm: #c08a2c;
+  --authored-surface: #eee6d5;
+}
+
+html[data-authored-theme='light'] {
+  --authored-bg: #f2f2f0;
+  --authored-page-filter: none;
+  --authored-text: #2b2b2b;
+  --authored-muted: #8d8d8d;
+  --authored-faint: rgba(0, 0, 0, 0.1);
+  --authored-accent: #b3322c;
+  --authored-warm: #c98a2e;
+  --authored-surface: #fafaf8;
+}
+
+/* ── Pageless themes: no visible page, only text on the background ───── */
+
+/* Soft light-grey text on charcoal. Coloured text keeps its hue. */
+html[data-authored-theme='night'] {
+  --authored-bg: #1c1c1c; /* = paper after the filter */
+  --authored-page-filter: invert(0.88) hue-rotate(180deg) brightness(0.92); /* text #cecece */
+  --authored-text: #cecece;
+  --authored-muted: #858585;
+  --authored-faint: rgba(206, 206, 206, 0.13);
+  --authored-accent: #c4504a;
+  --authored-warm: #d6a24e;
+  --authored-surface: #232323;
+}
+
+/* Blue-white text on deep blue-grey. */
+html[data-authored-theme='midnight'] {
+  --authored-bg: #161d25; /* = paper after the filter */
+  --authored-page-filter: invert(0.9) sepia(1) hue-rotate(170deg) saturate(1.5) brightness(0.9); /* text #d7e3e6 */
+  --authored-text: #d7e3e6;
+  --authored-muted: #7d8b99;
+  --authored-faint: rgba(215, 227, 230, 0.12);
+  --authored-accent: #d0605a;
+  --authored-warm: #d9a94f;
+  --authored-surface: #1c242e;
+}
+
+/* Cream text on dark brown. */
+html[data-authored-theme='espresso'] {
+  --authored-bg: #201917; /* = paper after the filter */
+  --authored-page-filter: invert(0.9) sepia(1) hue-rotate(-30deg) brightness(0.85); /* text #d9d4bc */
+  --authored-text: #d9d4bc;
+  --authored-muted: #8f8371;
+  --authored-faint: rgba(217, 212, 188, 0.12);
+  --authored-accent: #c85a44;
+  --authored-warm: #d9a24a;
+  --authored-surface: #28201d;
+}
+
+/* Pale green-white text on very dark green. */
+html[data-authored-theme='forest'] {
+  --authored-bg: #171917; /* = paper after the filter */
+  --authored-page-filter: invert(0.9) sepia(0.3) hue-rotate(80deg) brightness(0.9); /* text #cce2d1 */
+  --authored-text: #cce2d1;
+  --authored-muted: #7f9284;
+  --authored-faint: rgba(204, 226, 209, 0.12);
+  --authored-accent: #c4564c;
+  --authored-warm: #d3a34c;
+  --authored-surface: #1e211e;
+}
+
+/* Dark grey text on soft grey. */
+html[data-authored-theme='mist'] {
+  --authored-bg: #eaeaea; /* = paper after the filter */
+  --authored-page-filter: invert(0.25) contrast(1.5) brightness(1.05); /* text #212121 */
+  --authored-text: #2a2a2a;
+  --authored-muted: #8a8a8a;
+  --authored-faint: rgba(0, 0, 0, 0.09);
+  --authored-accent: #b3322c;
+  --authored-warm: #c98a2e;
+  --authored-surface: #f3f3f3;
+}
+
+/* Brown-black text on warm cream. */
+html[data-authored-theme='parchment'] {
+  --authored-bg: #f1e5cf; /* = paper after the filter */
+  --authored-page-filter: invert(0.25) sepia(0.3) contrast(1.5) brightness(0.95); /* text #28241d */
+  --authored-text: #3a3126;
+  --authored-muted: #8f7f66;
+  --authored-faint: rgba(58, 49, 38, 0.12);
+  --authored-accent: #a8382f;
+  --authored-warm: #c08a2c;
+  --authored-surface: #f6ecda;
+}

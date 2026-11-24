@@ -1,0 +1,17 @@
+/*
+ * Focus-mode rules that do not depend on Docs selectors.
+ * Rules that hide or restyle Docs elements are generated from
+ * content/selectors.js by content/focus-mode.js, so a broken selector can be
+ * fixed in one place.
+ */
+
+html.authored-on,
+html.authored-on body {
+  background: var(--authored-bg) !important;
+}
+
+/* Mouse pointer hidden after a few seconds of typing without moving it. */
+html.authored-on.authored-mouse-idle,
+html.authored-on.authored-mouse-idle * {
+  cursor: none !important;
+}

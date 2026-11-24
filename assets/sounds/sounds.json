@@ -1,0 +1,47 @@
+{
+  "typewriter": {
+    "key": [
+      "typewriter/key-1.wav",
+      "typewriter/key-2.wav",
+      "typewriter/key-3.wav",
+      "typewriter/key-4.wav",
+      "typewriter/key-5.wav",
+      "typewriter/key-6.wav",
+      "typewriter/key-7.wav",
+      "typewriter/key-8.wav",
+      "typewriter/key-9.wav",
+      "typewriter/key-10.wav"
+    ],
+    "space": [
+      "typewriter/space-1.wav",
+      "typewriter/space-2.wav",
+      "typewriter/space-3.wav"
+    ],
+    "delete": [],
+    "enter": [
+      "typewriter/enter-1.wav",
+      "typewriter/enter-2.wav"
+    ]
+  },
+  "keyboard": {
+    "key": [
+      "keyboard/key-1.wav",
+      "keyboard/key-2.wav",
+      "keyboard/key-3.wav",
+      "keyboard/key-4.wav",
+      "keyboard/key-5.wav",
+      "keyboard/key-6.wav",
+      "keyboard/key-7.wav",
+      "keyboard/key-8.wav"
+    ],
+    "space": [
+      "keyboard/space-1.wav",
+      "keyboard/space-2.wav"
+    ],
+    "delete": [],
+    "enter": [
+      "keyboard/enter-1.wav"
+    ]
+  },
+  "chime": []
+}
