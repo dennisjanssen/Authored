@@ -36,7 +36,11 @@
         filter: var(--authored-page-filter, none) !important;
         box-shadow: none !important;
         border-color: transparent !important;
-      }`
+      }`,
+      // The caret is drawn outside the page, so it would stay black on dark
+      // themes. The same filter gives it the theme's text colour; collaborators'
+      // carets keep their hue, just as coloured text does.
+      `${S.cursorCaret.css} { filter: var(--authored-page-filter, none) !important; }`
     );
     return rules.join('\n');
   }
